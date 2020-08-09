@@ -47,7 +47,8 @@ export const Container = styled.section`
 
     ul {
       list-style: none;
-      display: inline-block;
+      display: inline;
+      text-align: center;
 
       li + li {
         margin-right: 5px;

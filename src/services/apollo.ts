@@ -12,15 +12,15 @@ const client = new ApolloClient({
             read(_, { variables }) {
               const coutries = countriesVar();
 
-              if (variables) {
+              if (variables && Object.keys(variables).length > 0) {
                 const foundCountry = coutries.find(
                   (country) => country.name === variables.countryName,
                 );
 
-                return foundCountry || {};
+                return foundCountry || null;
               }
 
-              return {};
+              return null;
             },
           },
         },

@@ -1,22 +1,12 @@
-import React, { useState, useCallback, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 
-import { useQuery, gql } from '@apollo/client';
+import { useQuery } from '@apollo/client';
 
 import { Container } from './styles';
 
 import CountryCard from '../../components/CountryCard';
 
-const COUNTRIES_QUERY = gql`
-  query {
-    Country {
-      name
-      capital
-      flag {
-        svgFile
-      }
-    }
-  }
-`;
+import { COUNTRIES_QUERY } from '../../queries/country';
 
 interface Country {
   name: string;
@@ -64,15 +54,6 @@ const Countries: React.FC = () => {
     };
   }, [data, searchCountry]);
 
-  const handleOnChangeSearchCountry = useCallback(
-    ({ target }: React.ChangeEvent<HTMLInputElement>) => {
-      const { value } = target;
-
-      setSearchCountry(value);
-    },
-    [],
-  );
-
   if (loading) {
     return <p>Carregando...</p>;
   }
@@ -91,7 +72,7 @@ const Countries: React.FC = () => {
         type="text"
         placeholder="Pesquise um país"
         value={searchCountry}
-        onChange={handleOnChangeSearchCountry}
+        onChange={({ target }) => setSearchCountry(target.value)}
       />
       <main>
         {countries.map((country) => (

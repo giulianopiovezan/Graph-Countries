@@ -18,5 +18,6 @@ export const Container = styled.section`
     border: none;
     border: 1px solid #dadada;
     font-size: 32px;
+    background: #fff;
   }
 `;

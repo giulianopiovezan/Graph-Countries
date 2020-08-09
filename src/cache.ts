@@ -1,6 +1,6 @@
 import { makeVar } from '@apollo/client';
 
-interface Coutries {
+export interface CoutriesData {
   name: string;
   capital: string;
   area: number;
@@ -10,12 +10,4 @@ interface Coutries {
   }[];
 }
 
-export const countriesVar = makeVar<Coutries[]>([
-  {
-    name: 'Brazil',
-    capital: 'Brasilia',
-    area: 1,
-    population: 2,
-    topLevelDomains: [{ name: 'teste' }],
-  },
-]);
+export const countriesVar = makeVar<CoutriesData[]>([]);

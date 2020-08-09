@@ -2,27 +2,11 @@ import React from 'react';
 
 import { useParams, Link } from 'react-router-dom';
 
-import { useQuery, gql } from '@apollo/client';
+import { useQuery } from '@apollo/client';
 
 import { Container } from './styles';
 
-const COUNTRY_QUERY = gql`
-  query getCountry($countryName: String!) {
-    Country(name: $countryName) {
-      name
-      capital
-      area
-      population
-      topLevelDomains {
-        name
-      }
-      flag {
-        svgFile
-      }
-      local @client
-    }
-  }
-`;
+import { COUNTRY_BY_NAME_QUERY } from '../../queries/country';
 
 interface CountryResponse {
   Country: {
@@ -36,7 +20,18 @@ interface CountryResponse {
     flag: {
       svgFile: string;
     };
+    local: {
+      area?: number;
+      population?: number;
+      topLevelDomains?: {
+        name: string;
+      }[];
+    };
   }[];
+}
+
+interface CountryQueryVariables {
+  countryName: string;
 }
 
 interface RouteParam {
@@ -45,7 +40,10 @@ interface RouteParam {
 
 const CountryDetails: React.FC = () => {
   const { countryName } = useParams<RouteParam>();
-  const { loading, error, data } = useQuery<CountryResponse>(COUNTRY_QUERY, {
+  const { loading, error, data } = useQuery<
+    CountryResponse,
+    CountryQueryVariables
+  >(COUNTRY_BY_NAME_QUERY, {
     variables: { countryName },
   });
 
@@ -77,19 +75,21 @@ const CountryDetails: React.FC = () => {
       <p>
         <span>Área:</span>
         <strong>
-          {country.area} <em>m2</em>
+          {country.local?.area || country.area} <em>m2</em>
         </strong>
       </p>
       <p>
         <span>População:</span>
-        <strong>{country.population}</strong>
+        <strong>{country.local?.population || country.population}</strong>
       </p>
       <div className="topLevelDomains">
         <span>Níveis de domínio</span>
         <ul>
-          {country.topLevelDomains.map((tpDomains) => (
-            <li key={tpDomains.name}>{tpDomains.name}</li>
-          ))}
+          {(country.local?.topLevelDomains || country.topLevelDomains).map(
+            (tpDomains) => (
+              <li key={tpDomains.name}>{tpDomains.name}</li>
+            ),
+          )}
         </ul>
       </div>
       <Link to={`/countries/${country.name}/edit`}>Editar</Link>
