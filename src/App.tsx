@@ -7,8 +7,6 @@ import apollo from './services/apollo';
 
 import Routes from './Routes';
 
-import Header from './components/Header';
-
 import GlobalStyles from './styles/global';
 
 const App: React.FC = () => {

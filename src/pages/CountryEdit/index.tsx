@@ -131,7 +131,15 @@ const CountryEdit: React.FC = () => {
 
   return (
     <Container onSubmit={handleSubmit}>
-      <img alt="flag" src={country.flag.svgFile} />
+      <figure>
+        <img alt="flag" src={country.flag.svgFile} />
+        <figcaption>{country.name}</figcaption>
+      </figure>
+
+      <p>
+        <span>Capital:</span>
+        <strong>{country.capital}</strong>
+      </p>
 
       <div className="form-group">
         <label htmlFor="area">

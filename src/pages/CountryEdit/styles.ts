@@ -11,13 +11,36 @@ export const Container = styled.form`
   margin: 10px;
   box-shadow: 2px 1px 4px rgba(0, 0, 0, 0.1);
 
-  img {
-    border-radius: 8px;
-    margin-bottom: 10px;
-    max-width: 500px;
+  p {
+    line-height: 28px;
 
-    @media only screen and (max-width: 500px) {
-      width: calc(100% - 20px);
+    span {
+      font-size: 20px;
+      margin-right: 5px;
+      color: #6d6d71;
+    }
+
+    strong {
+      font-size: 20px;
+      font-weight: 500;
+    }
+  }
+
+  figure {
+    img {
+      border-radius: 8px;
+      margin-bottom: 10px;
+      max-width: 500px;
+
+      @media only screen and (max-width: 500px) {
+        width: calc(100% - 20px);
+      }
+    }
+
+    figcaption {
+      font-size: 20px;
+      text-align: center;
+      color: #6d6d71;
     }
   }
 
