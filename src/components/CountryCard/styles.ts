@@ -9,7 +9,7 @@ export const Container = styled.div`
   border-radius: 8px;
   box-shadow: 2px 1px 4px rgba(0, 0, 0, 0.1);
   margin: 20px;
-  background: #f5f5f05e;
+  background: #fff;
 
   section {
     padding: 10px;

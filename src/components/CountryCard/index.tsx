@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { Link } from 'react-router-dom';
+
 import { Container } from './styles';
 
 interface CountryCardProps {
@@ -22,7 +24,7 @@ const CountryCard: React.FC<CountryCardProps> = ({
           <strong>Capital: </strong>
           <span>{capital}</span>
         </p>
-        <a href="/details">ver detalhes</a>
+        <Link to={`/countries/${name}`}>ver detalhes</Link>
       </section>
     </Container>
   );
