@@ -18,14 +18,14 @@ const CountryCard: React.FC<CountryCardProps> = ({
   return (
     <Container>
       <img alt="country" src={flagUrl} />
-      <section>
+      <div>
         <h1>{name}</h1>
         <p>
           <strong>Capital: </strong>
           <span>{capital}</span>
         </p>
         <Link to={`/countries/${name}`}>ver detalhes</Link>
-      </section>
+      </div>
     </Container>
   );
 };

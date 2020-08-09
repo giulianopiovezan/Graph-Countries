@@ -19,6 +19,7 @@ const COUNTRY_QUERY = gql`
       flag {
         svgFile
       }
+      local @client
     }
   }
 `;
@@ -49,11 +50,11 @@ const CountryDetails: React.FC = () => {
   });
 
   if (loading) {
-    return <p>Loading...</p>;
+    return <p>Carregando...</p>;
   }
 
   if (error) {
-    return <p>{error}</p>;
+    return <p>Ocorreu um erro ao carregar os dados</p>;
   }
 
   if (!data?.Country) {
@@ -66,7 +67,7 @@ const CountryDetails: React.FC = () => {
     <Container>
       <img alt="flag" src={country.flag.svgFile} />
       <p>
-        <span>Pais:</span>
+        <span>País:</span>
         <strong>{country.name}</strong>
       </p>
       <p>
@@ -74,17 +75,17 @@ const CountryDetails: React.FC = () => {
         <strong>{country.capital}</strong>
       </p>
       <p>
-        <span>Area:</span>
+        <span>Área:</span>
         <strong>
           {country.area} <em>m2</em>
         </strong>
       </p>
       <p>
-        <span>Populacao:</span>
+        <span>População:</span>
         <strong>{country.population}</strong>
       </p>
       <div className="topLevelDomains">
-        <span>Niveis de dominio</span>
+        <span>Níveis de domínio</span>
         <ul>
           {country.topLevelDomains.map((tpDomains) => (
             <li key={tpDomains.name}>{tpDomains.name}</li>

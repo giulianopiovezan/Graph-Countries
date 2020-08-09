@@ -1,8 +1,7 @@
 import styled from 'styled-components';
 
-export const Container = styled.div`
+export const Container = styled.article`
   width: 300px;
-  max-height: 300px;
   display: flex;
   flex-direction: column;
   border: 1px solid #dadada;
@@ -11,7 +10,7 @@ export const Container = styled.div`
   margin: 20px;
   background: #fff;
 
-  section {
+  div {
     padding: 10px;
     text-align: center;
     position: relative;
