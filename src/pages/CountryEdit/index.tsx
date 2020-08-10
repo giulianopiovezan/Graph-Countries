@@ -94,14 +94,15 @@ const CountryEdit: React.FC = () => {
 
   const handleAddTopLevelDomain = useCallback(() => {
     if (topLevelDomain) {
-      if (
-        topLevelDomains.some(
-          (findTopLevel) => findTopLevel.name === topLevelDomain,
-        )
-      ) {
+      const hasDuplication = topLevelDomains.some(
+        (findTopLevel) => findTopLevel.name === topLevelDomain,
+      );
+
+      if (hasDuplication) {
         alert('Nível de domínio já cadastrado.');
         return;
       }
+
       setTopLevelDomains((state) => [...state, { name: topLevelDomain }]);
       setTopLevelDomain('');
     }

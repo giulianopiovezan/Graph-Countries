@@ -7,7 +7,9 @@ export const Container = styled.section`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border-radius: 4px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 2px 1px 4px rgba(0, 0, 0, 0.1);
 
   img {
     border-radius: 8px;
