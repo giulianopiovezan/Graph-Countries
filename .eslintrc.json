@@ -1,7 +1,8 @@
 {
   "env": {
     "browser": true,
-    "es6": true
+    "es6": true,
+    "jest": true
   },
   "extends": [
     "plugin:react/recommended",
@@ -26,8 +27,7 @@
     "react",
     "react-hooks",
     "@typescript-eslint",
-    "prettier",
-    "testing-library"
+    "prettier"
   ],
   "rules": {
     "no-unused-expressions": "off",
@@ -52,10 +52,7 @@
       {
         "allowExpressions": true
       }
-    ],
-    "testing-library/await-async-query": "error",
-    "testing-library/no-await-sync-query": "error",
-    "testing-library/no-debug": "warn"
+    ]
   },
   "settings": {
     "import/resolver": {

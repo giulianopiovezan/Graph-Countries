@@ -13,7 +13,13 @@ export const COUNTRY_BY_NAME_QUERY = gql`
       flag {
         svgFile
       }
-      local @client
+      local @client {
+        area
+        population
+        topLevelDomains {
+          name
+        }
+      }
     }
   }
 `;
@@ -25,10 +31,6 @@ export const COUNTRIES_QUERY = gql`
       capital
       flag {
         svgFile
-      }
-      local @client {
-        name
-        capital
       }
     }
   }

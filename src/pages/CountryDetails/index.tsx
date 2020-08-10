@@ -52,11 +52,11 @@ const CountryDetails: React.FC = () => {
   }
 
   if (error) {
-    return <p>Ocorreu um erro ao carregar os dados</p>;
+    return <p>Ocorreu um erro ao carregar as informações do país</p>;
   }
 
-  if (!data?.Country) {
-    return <p>Nenhum dado encontrado</p>;
+  if (!data?.Country.length) {
+    return <p>País não encontrado</p>;
   }
 
   const [country] = data.Country;

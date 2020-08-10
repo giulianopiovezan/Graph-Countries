@@ -33,19 +33,18 @@ const Countries: React.FC = () => {
 
   useEffect(() => {
     const timeout = setTimeout(() => {
-      if (!data) {
-        return;
-      }
-      if (searchCountry) {
-        setCountries([
-          ...data?.Country.filter((country) =>
-            country.name
-              .toLocaleLowerCase()
-              .includes(searchCountry.toLocaleLowerCase()),
-          ),
-        ]);
-      } else {
-        setCountries(data.Country);
+      if (data) {
+        if (searchCountry) {
+          setCountries([
+            ...data?.Country.filter((country) =>
+              country.name
+                .toLocaleLowerCase()
+                .includes(searchCountry.toLocaleLowerCase()),
+            ),
+          ]);
+        } else {
+          setCountries(data.Country);
+        }
       }
     }, 1000);
 
@@ -59,11 +58,11 @@ const Countries: React.FC = () => {
   }
 
   if (error) {
-    return <p>{error}</p>;
+    return <p>Ocorreu um erro ao carregar os países</p>;
   }
 
-  if (!data?.Country) {
-    return <p>Nenhum dado encontrado</p>;
+  if (!data?.Country.length) {
+    return <p>Nenhum país encontrado</p>;
   }
 
   return (

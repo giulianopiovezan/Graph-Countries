@@ -31,6 +31,7 @@ export const Container = styled.form`
       border-radius: 8px;
       margin-bottom: 10px;
       max-width: 500px;
+      border: 1px solid #dadada;
 
       @media only screen and (max-width: 500px) {
         width: calc(100% - 20px);

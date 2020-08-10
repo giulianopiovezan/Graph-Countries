@@ -16,7 +16,7 @@ const CountryCard: React.FC<CountryCardProps> = ({
   flagUrl,
 }) => {
   return (
-    <Container>
+    <Container id={name}>
       <img alt="country" src={flagUrl} />
       <div>
         <h1>{name}</h1>

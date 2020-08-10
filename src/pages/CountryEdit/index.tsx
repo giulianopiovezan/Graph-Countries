@@ -60,7 +60,7 @@ const CountryEdit: React.FC = () => {
   const [topLevelDomain, setTopLevelDomain] = useState('');
 
   useEffect(() => {
-    if (data) {
+    if (data?.Country.length) {
       const [country] = data.Country;
       setArea(country.local?.area || country.area);
       setPopulation(country.local?.population || country.population);
@@ -74,22 +74,20 @@ const CountryEdit: React.FC = () => {
     (event: React.FormEvent) => {
       event.preventDefault();
 
-      if (!data) {
-        return;
+      if (data) {
+        const [country] = data.Country;
+
+        countriesVar([
+          ...localCountries.filter(
+            (localCountry) => localCountry.name !== country.name,
+          ),
+          { ...country, area, population, topLevelDomains },
+        ]);
+
+        alert('Atualizado com sucesso');
+
+        history.push('/countries');
       }
-
-      const [country] = data.Country;
-
-      countriesVar([
-        ...localCountries.filter(
-          (localCountry) => localCountry.name !== country.name,
-        ),
-        { ...country, area, population, topLevelDomains },
-      ]);
-
-      alert('Atualizado com sucesso');
-
-      history.push('/countries');
     },
     [area, data, history, localCountries, population, topLevelDomains],
   );
@@ -101,7 +99,7 @@ const CountryEdit: React.FC = () => {
           (findTopLevel) => findTopLevel.name === topLevelDomain,
         )
       ) {
-        alert('Nivel de dominio ja existe');
+        alert('Nível de domínio já cadastrado.');
         return;
       }
       setTopLevelDomains((state) => [...state, { name: topLevelDomain }]);
@@ -120,11 +118,11 @@ const CountryEdit: React.FC = () => {
   }
 
   if (error) {
-    return <p>Ocorreu um erro ao carregar os dados</p>;
+    return <p>Ocorreu um erro ao carregar as informações do país</p>;
   }
 
-  if (!data?.Country) {
-    return <p>Nenhum dado encontrado</p>;
+  if (!data?.Country.length) {
+    return <p>País não encontrado</p>;
   }
 
   const [country] = data.Country;
@@ -143,7 +141,7 @@ const CountryEdit: React.FC = () => {
 
       <div className="form-group">
         <label htmlFor="area">
-          Area
+          Área
           <input
             id="area"
             type="number"
@@ -155,9 +153,10 @@ const CountryEdit: React.FC = () => {
       </div>
       <div className="form-group">
         <label htmlFor="population">
-          Populacao
+          População
           <input
             id="population"
+            data-testid="population"
             type="number"
             name="population"
             value={population}
@@ -166,7 +165,7 @@ const CountryEdit: React.FC = () => {
         </label>
       </div>
       <fieldset>
-        <legend>Niveis de dominio</legend>
+        <legend>Níveis de dominio</legend>
         <div>
           <input
             id="topLevelDomain"
@@ -174,9 +173,13 @@ const CountryEdit: React.FC = () => {
             name="topLevelDomain"
             value={topLevelDomain}
             onChange={({ target }) => setTopLevelDomain(target.value)}
-            placeholder="Adicionar nivel de dominio"
+            placeholder="Adicionar nível de domínio"
           />
-          <button type="button" onClick={handleAddTopLevelDomain}>
+          <button
+            id="addTopLevelDomain"
+            type="button"
+            onClick={handleAddTopLevelDomain}
+          >
             Adicionar
           </button>
         </div>
@@ -186,6 +189,7 @@ const CountryEdit: React.FC = () => {
             <li key={domain.name}>
               <span>{domain.name}</span>
               <button
+                id="removeTopLevelDomain"
                 type="button"
                 onClick={() => handleRemoveTopLevelDomain(domain.name)}
               >
