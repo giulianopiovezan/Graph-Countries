@@ -1,15 +1,25 @@
 import styled from 'styled-components';
+import { Map } from 'react-leaflet';
 
 export const Container = styled.section`
-  margin: 10px;
   padding: 7px 14px;
+  margin: 10px;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
   background: #fff;
   border-radius: 8px;
   box-shadow: 2px 1px 4px rgba(0, 0, 0, 0.1);
+
+  @media only screen and (max-width: 1024px) {
+    flex-direction: column;
+  }
+`;
+
+export const Content = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-right: 40px;
 
   img {
     border-radius: 8px;
@@ -41,6 +51,8 @@ export const Container = styled.section`
   }
 
   .topLevelDomains {
+    text-align: center;
+
     span {
       font-size: 20px;
       margin-right: 5px;
@@ -50,7 +62,6 @@ export const Container = styled.section`
     ul {
       list-style: none;
       display: inline;
-      text-align: center;
 
       li + li {
         margin-right: 5px;
@@ -59,6 +70,7 @@ export const Container = styled.section`
   }
 
   a {
+    margin-top: 10px;
     text-decoration: none;
     padding: 5px 10px;
     width: 100px;
@@ -72,5 +84,17 @@ export const Container = styled.section`
     &:hover {
       background: #4caf50d6;
     }
+  }
+`;
+
+export const MapContainer = styled(Map)`
+  width: 100%;
+  height: 600px;
+  border-radius: 4px;
+  padding: 0;
+  margin: 10px;
+
+  ul {
+    list-style: none;
   }
 `;

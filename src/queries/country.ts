@@ -12,6 +12,22 @@ export const COUNTRY_BY_NAME_QUERY = gql`
       }
       flag {
         svgFile
+        emoji
+      }
+      location {
+        latitude
+        longitude
+      }
+      borders(first: 5) {
+        name
+        location {
+          longitude
+          latitude
+        }
+      }
+      distanceToOtherCountries(first: 5) {
+        distanceInKm
+        countryName
       }
       local @client {
         area

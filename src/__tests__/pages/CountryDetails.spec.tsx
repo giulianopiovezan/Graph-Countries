@@ -33,7 +33,27 @@ const mocks = [
               ],
               flag: {
                 svgFile: 'https://restcountries.eu/data/bra.svg',
+                emoji: '',
               },
+              location: {
+                latitude: 1,
+                longitude: 1,
+              },
+              borders: [
+                {
+                  name: 'Argentina',
+                  location: {
+                    longitude: 2,
+                    latitude: 2,
+                  },
+                },
+              ],
+              distanceToOtherCountries: [
+                {
+                  distanceInKm: 100,
+                  countryName: 'Argentina',
+                },
+              ],
               local: null,
             },
           ],
@@ -67,7 +87,27 @@ const mocksWithLocalData = [
               ],
               flag: {
                 svgFile: 'https://restcountries.eu/data/bra.svg',
+                emoji: '',
               },
+              location: {
+                latitude: 1,
+                longitude: 1,
+              },
+              borders: [
+                {
+                  name: 'Argentina',
+                  location: {
+                    longitude: 2,
+                    latitude: 2,
+                  },
+                },
+              ],
+              distanceToOtherCountries: [
+                {
+                  distanceInKm: 100,
+                  countryName: 'Argentina',
+                },
+              ],
               local: {
                 name: 'Brazil',
                 capital: 'Brasilia',
